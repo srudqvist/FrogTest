@@ -10,10 +10,6 @@ import time
 import os
 import random
 
-#source = audio.play_file("FrogSounds/Anaxyrus_americanus.mp3", 0.5)
-#while True:
- #  pass
-
 
 #The console UI
 def console_user_interface():
@@ -34,13 +30,9 @@ def console_user_interface():
     p14 = ("FrogSounds/Scaphiopus_holbrookii.mp3", "scaphiopus holbrookii")
     
     sounds = [p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14]
-    #for item in sounds:
-    #    print(item[1])
     random.shuffle(sounds)
     print()
     print()
-    #for item in sounds:
-     #   print(item[1])
 
     print("Frog Sounds\n")
     user_input = str(input("Do you want to play? (y/n): ")).strip().lower()
@@ -52,52 +44,36 @@ def console_user_interface():
             time.sleep(0.5)
             quit = False
             #source = audio.play_file(file_path, volume, does_loop, loop_count, name)
+            
             # Play the sound
             startTime = time.time()
-    
-            #print("\nPause Sound: 1")
-            #print("Hear again: 2")
             print("")
+
             # Play the sound at the current sound_index from the sounds list.
             print(sound_index)
             os.system("afplay " + sounds[sound_index][0])
-            # Print the name of the frog
 
             # Keep the program running 
             correctBool = False
             while not quit:
                 endTime = time.time()
-                #print(f"Time:", int(endTime - startTime))
+
                 if not correctBool:
                     user_input = str(input("What frog was that? >>> ")).strip().lower()
                     if user_input == sounds[sound_index][1] and not correctBool:
                         correct += 1
                         print("Correct")
-                        #source.paused = True
                         correctBool = True
-                    #elif user_input == "1":
-                        #source.paused = True
-                    #elif user_input == "2":
-                        #source = audio.play_file(sounds[sound_index][0])
-                        
                     else:
                         print("Incorrect, it was", sounds[sound_index][1])
                         correctBool = True
-
-                    
-                    # if (endTime - startTime) >= 20:
-                    #     print("here")
-                    #     quit = True
                 else:
-                 #   if (endTime - startTime) >= 20:
-                  #      print("here")
                     quit = True
 
-                    
             sound_index += 1
             if correct == 15 or sound_index == 16:
                 game_over = True
-        #score = len(sounds) 
+
         print(f"Your result: {correct}/{len(sounds)}")  
         
 console_user_interface()
